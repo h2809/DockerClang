@@ -1,8 +1,19 @@
 version: '3.3'
 services:
-  dev:
-    build: .
+  clangdev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # イメージ名
+    image: clangdev
+    # コンテナ名
+    container_name: clangdev
     volumes:
       - type: bind
         source: .
-        target: /clang-dev
+        # コンテナの/clangdevと同期
+        target: /clangdev
+    stdin_open: true
+    tty: true
+    # dockerに入った時の初期ディレクトリ
+    working_dir: /clangdev/src
